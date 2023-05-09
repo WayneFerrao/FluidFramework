@@ -19,7 +19,7 @@ import {
 	TableColumnDefinition,
 	createTableColumn,
 } from "@fluentui/react-components";
-import React, { useState, useRef } from "react";
+import React from "react";
 import SplitPane from "react-split-pane";
 import {
 	GetTelemetryHistory,
@@ -187,7 +187,7 @@ interface FilteredTelemetryViewProps {
 
 function FilteredTelemetryView(props: FilteredTelemetryViewProps): React.ReactElement {
 	const { telemetryEvents } = props;
-	const [selectedCategory, setSelectedCategory] = useState("");
+	const [selectedCategory, setSelectedCategory] = React.useState("");
 	const [filteredTelemetryEvents, setFilteredTelemetryEvents] = React.useState<
 		ITimestampedTelemetryEvent[] | undefined
 	>();
@@ -200,7 +200,7 @@ function FilteredTelemetryView(props: FilteredTelemetryViewProps): React.ReactEl
 	 * State holding a list of ALL unique event names.
 	 * An empty list means no telemetry events have come in.
 	 */
-	const [eventNameOptions, setEventNameOptions] = useState<string[]>([]);
+	const [eventNameOptions, setEventNameOptions] = React.useState<string[]>([]);
 	/**
 	 * State holding the event names matching the currently applied filter.
 	 * Updated by the `onEventNameChange` handler
@@ -208,7 +208,7 @@ function FilteredTelemetryView(props: FilteredTelemetryViewProps): React.ReactEl
 	const [matchingOptions, setMatchingOptions] = React.useState<string[]>([]);
 
 	const [selectedEvent, setSelectedEvent] = React.useState<Item>();
-	const eventNameOptionsRef = useRef<string[]>([]);
+	const eventNameOptionsRef = React.useRef<string[]>([]);
 	React.useEffect(() => {
 		eventNameOptionsRef.current = eventNameOptions;
 	}, [eventNameOptions]);
